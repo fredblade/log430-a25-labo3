@@ -76,7 +76,7 @@ Le directeur du magasin qui utilise notre application a besoin de connaître l'�
 
 ### 3. Utilisez l'endpoint GraphQL
 
-Dans l'activité 3, nous avons ajouté de nouvelles colonnes `Product` à un endpoint `Stock`. Si à l'avenir nous avons de nouvelles colonnes dans `Product` ou `Stock`, ou le besoin de conserver différents endpoints avec des colonnes distinctes, il faudra que nous créions différents endpoints. Pour nous aider à mieux gérer l'hétérogénéité des endpoints, on peut créer un endpoint GraphQL.
+Dans l'activité 2, nous avons ajouté de nouvelles colonnes `Product` à un endpoint `Stock`. Si à l'avenir nous avons de nouvelles colonnes dans `Product` ou `Stock`, ou le besoin de conserver différents endpoints avec des colonnes distinctes, il faudra que nous créions différents endpoints. Pour nous aider à mieux gérer l'hétérogénéité des endpoints, on peut créer un endpoint GraphQL.
 
 GraphQL est un langage qui nous permet de donner la possibilité aux clients qui utilisent notre API REST de continuer à utiliser les endpoints avec les noms et méthodes fixés, mais en passant les noms des colonnes qu'ils veulent. Par exemple :
 
