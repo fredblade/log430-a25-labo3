@@ -6,6 +6,7 @@ Auteurs : Gabriel C. Ullmann, Fabio Petrillo, 2025
 from sqlalchemy import text
 from stocks.models.stock import Stock
 from db import get_redis_conn, get_sqlalchemy_session
+from stocks.queries.read_product import get_product_by_id
 
 def set_stock_for_product(product_id, quantity):
     """Set stock quantity for product in MySQL"""
@@ -83,13 +84,18 @@ def update_stock_redis(order_items, operation):
             # TODO: ajoutez plus d'information sur l'article
             current_stock = r.hget(f"stock:{product_id}", "quantity")
             current_stock = int(current_stock) if current_stock else 0
-            
+
+            product = get_product_by_id(product_id)
             if operation == '+':
                 new_quantity = current_stock + quantity
             else:  
                 new_quantity = current_stock - quantity
-            
-            pipeline.hset(f"stock:{product_id}", "quantity", new_quantity)
+            pipeline.hset(f"stock:{product_id}", mapping={
+                "quantity": new_quantity,
+                "sku": product.get("sku") if product else "",
+                "name": product.get("name") if product else "",
+                "price": float(product.get("price", 0.0)) if product else 0.0
+            })
         
         pipeline.execute()
     

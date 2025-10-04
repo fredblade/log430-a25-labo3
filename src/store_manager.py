@@ -10,9 +10,9 @@ from orders.controllers.order_controller import create_order, remove_order, get_
 from orders.controllers.user_controller import create_user, remove_user, get_user
 from stocks.controllers.product_controller import create_product, remove_product, get_product
 from stocks.controllers.stock_controller import get_stock, set_stock, get_stock_overview
- 
+from misc.scriptt import sync_redis_with_mysql
 app = Flask(__name__)
-
+sync_redis_with_mysql()
 @app.get('/health-check')
 def health():
     """Return OK if app is up and running"""
