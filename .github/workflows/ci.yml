@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+  runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -30,6 +30,9 @@ jobs:
           echo "REDIS_PORT=6379" >> .env
           echo "REDIS_DB=0" >> .env
 
+      - name: Create Docker network
+        run: docker network create labo03-network
+        
       - name: Start Docker containers
         run: docker compose up -d
 
