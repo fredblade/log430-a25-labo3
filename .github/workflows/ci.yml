@@ -38,7 +38,7 @@ jobs:
           echo "REDIS_DB=0" >> .env
 
       - name: Create Docker network
-        run: docker network create labo03-network
+        run: docker network create labo03-network || true
 
       - name: Start Docker containers
         run: docker compose up -d
