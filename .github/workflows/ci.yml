@@ -30,6 +30,12 @@ jobs:
           echo "REDIS_PORT=6379" >> .env
           echo "REDIS_DB=0" >> .env
 
+      - name: Start Docker containers
+        run: docker-compose up -d
+
+      - name: Wait for services to be ready
+        run: sleep 15
+
       - name: Run tests
         working-directory: src
         run: docker exec store_manager python -m pytest -v
