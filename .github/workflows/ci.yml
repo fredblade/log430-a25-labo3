@@ -7,7 +7,7 @@ on:
 
 jobs:
   test:
-  runs-on: self-hosted
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -32,7 +32,7 @@ jobs:
 
       - name: Create Docker network
         run: docker network create labo03-network
-        
+
       - name: Start Docker containers
         run: docker compose up -d
 
