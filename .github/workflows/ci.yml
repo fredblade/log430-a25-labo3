@@ -11,10 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Clean up previous containers
+      - name: Clean workspace
         run: |
-          docker compose down --remove-orphans || true
-          docker network rm labo03-network || true
+          sudo chmod -R 777 "${GITHUB_WORKSPACE}" 2>/dev/null || true
+          sudo rm -rf "${GITHUB_WORKSPACE}"/*
+          sudo rm -rf "${GITHUB_WORKSPACE}"/.[!.]* 2>/dev/null || true
 
       - name: Set up Python
         uses: actions/setup-python@v4
