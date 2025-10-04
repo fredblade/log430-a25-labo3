@@ -1,5 +1,6 @@
 services:
   store_manager:
+    container_name: store_manager
     build: .
     environment:
       - PYTHONUNBUFFERED=1
@@ -14,6 +15,7 @@ services:
       - redis
 
   mysql:
+    container_name: mysql
     image: mysql:8
     restart: unless-stopped
     environment:
@@ -30,6 +32,7 @@ services:
       - ./db-init:/docker-entrypoint-initdb.d
 
   redis:
+    container_name: redis
     image: redis:7
     restart: unless-stopped
     networks:
