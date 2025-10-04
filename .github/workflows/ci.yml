@@ -32,4 +32,4 @@ jobs:
 
       - name: Run tests
         working-directory: src
-        run: echo "Call pytest command here!"
+        run: docker exec store_manager python -m pytest -v
