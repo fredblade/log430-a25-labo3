@@ -9,13 +9,13 @@ jobs:
   test:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
 
       - name: Clean workspace
         run: |
           sudo chmod -R 777 "${GITHUB_WORKSPACE}" 2>/dev/null || true
           sudo rm -rf "${GITHUB_WORKSPACE}"/*
           sudo rm -rf "${GITHUB_WORKSPACE}"/.[!.]* 2>/dev/null || true
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
